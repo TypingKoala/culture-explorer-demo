@@ -34,10 +34,6 @@ const mediumOptions: IDropdownOption[] = [
 ];
 
 class Options extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    // this.handleChange = this.handleChange.bind(this);
-  }
 
   private handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption): void {
     console.log(option)

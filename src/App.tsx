@@ -1,5 +1,5 @@
 import React from 'react';
-import {Stack, Text, Separator, mergeStyles} from 'office-ui-fabric-react';
+import {Stack, Separator, mergeStyles} from 'office-ui-fabric-react';
 import {Header} from './Header';
 import Artwork from './Artwork';
 import Options from './Options';
@@ -61,14 +61,14 @@ export class App extends React.Component<IProps, IState> {
     }
 
     addtoCollection(collection: string): void{
-        this.state.collections[collection].push(this.state.current);
         let newcollect = {...this.state.collections};
+        newcollect[collection].push(this.state.current);
         this.setState({'collections': newcollect});
     }
 
     addCollection(collection:string): void{
-        this.state.collections[collection] = [this.state.current];
         let newcollect = {...this.state.collections};
+        newcollect[collection] = [this.state.current];
         this.setState({'collections': newcollect});
     }
 

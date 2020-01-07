@@ -1,5 +1,5 @@
 import React from 'react';
-import { FocusZone, List, IRectangle, ITheme, getTheme, mergeStyleSets, mergeStyles } from 'office-ui-fabric-react';
+import { FocusZone, List, ITheme, getTheme, mergeStyleSets, mergeStyles } from 'office-ui-fabric-react';
 import {
   DocumentCard,
   DocumentCardPreview,
