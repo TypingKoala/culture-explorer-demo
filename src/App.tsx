@@ -42,7 +42,7 @@ export const App : React.FunctionComponent = () => {
                 <Stack grow={1}>
                     <Artwork item={current} />
                     <ContextualMenuDefaultExample/>
-                    <Buttons setCurrent={() => setCurrent(selected)}/>
+                    <Buttons setCurrent={() => setCurrent(selected)} reset={() => {setCurrent(defaultGalleryItem); setSelected(defaultSelectedGalleryItem)}}/>
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>

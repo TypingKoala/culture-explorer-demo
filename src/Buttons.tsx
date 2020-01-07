@@ -11,13 +11,14 @@ const buttonStyle = mergeStyles({
 
 type ButtonProps = {
     setCurrent: any
+    reset: any
 }
 
 export const Buttons : React.FunctionComponent<ButtonProps> = (props) => {
     return (
         <Stack>
-            <DefaultButton className={buttonStyle} onClick={props.setCurrent} text="Switch Current"/>
-            <DefaultButton className={buttonStyle} text="Start Over"/>
+            <DefaultButton className={buttonStyle} text="Switch Current" onClick={props.setCurrent}/>
+            <DefaultButton className={buttonStyle} text="Start Over" onClick={props.reset}/>
         </Stack>
     )
 };
