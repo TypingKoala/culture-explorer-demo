@@ -1,15 +1,16 @@
 import React from 'react';
-import { Stack, FontWeights, Dropdown, IDropdownOption, IDropdownStyles} from 'office-ui-fabric-react';
+import { Stack, Dropdown, IDropdownOption, IDropdownStyles} from 'office-ui-fabric-react';
 import { mergeStyles } from '@uifabric/merge-styles';
 
 const dropdown = mergeStyles({
     marginBottom : 10
-})
+});
 
 interface IState {
 }
 
 interface IProps {
+  options? : Object,
   handleCultureChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void,
   handleMediumChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void
 }
@@ -23,23 +24,55 @@ const cultureOptions: IDropdownOption[] = [
     { key: 'cultureAmerican', text: 'American' },
     { key: 'cultureBritish', text: 'British' },
     { key: 'cultureKorean', text: 'Korean' }
-]
+];
 
 const mediumOptions: IDropdownOption[] = [
     { key: 'mediumPainting', text: 'Painting'},
     { key: 'mediumSculpture', text: 'Sculpture'},
     { key: 'mediumPottery', text: 'Pottery'},
     { key: 'mediumArmor', text: 'Armor'}
-]
+];
 
 class Options extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption,) {
+  private handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption): void {
     console.log(option)
+  }
+
+  private createDropdowns(): JSX.Element[] {
+    let dropdowns: JSX.Element[] = [];
+
+    let selectors: Object = {
+      culture: {
+        callback: this.handleChange,
+        options: ['Chinese', 'American', 'British', 'Korean']
+      },
+      medium: {
+        callback: this.handleChange,
+        options: ['Painting', 'Sculpture', 'Pottery', 'Armor']
+      }
+    };
+
+    for (let category in Object.keys(selectors)) {
+      if (Object.prototype.hasOwnProperty.call(selectors, category)) {
+        dropdowns.push(
+          <Dropdown
+              placeholder={"Select " + category}
+              label={category}
+              options={cultureOptions}
+              styles={dropdownStyles}
+              className={dropdown}
+              onChange={this.props.handleCultureChange}
+            />
+        )
+      }
+    }
+
+    return dropdowns;
   }
 
   render() {
@@ -47,16 +80,16 @@ class Options extends React.Component<IProps, IState> {
       <Stack>
         <Stack.Item align="center">
           <Dropdown
-            placeholder="Select Culture"
-            label="Culture"
+            placeholder={"Culture"}
+            label={"Select Culture"}
             options={cultureOptions}
             styles={dropdownStyles}
             className={dropdown}
             onChange={this.props.handleCultureChange}
           />
           <Dropdown
-            placeholder="Select Medium"
-            label="Medium"
+            placeholder={"Medium"}
+            label={"Select Medium"}
             options={mediumOptions}
             styles={dropdownStyles}
             className={dropdown}
@@ -65,8 +98,7 @@ class Options extends React.Component<IProps, IState> {
         </Stack.Item>
       </Stack>
     );
-    
   }
 }
 
-export { Options };
+export default Options
