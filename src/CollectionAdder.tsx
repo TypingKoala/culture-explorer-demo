@@ -1,98 +1,76 @@
 import React from'react';
-import { ContextualMenu, ContextualMenuItemType, IContextualMenuItem, Fabric, initializeIcons } from 'office-ui-fabric-react';
-import {useConstCallback} from '@uifabric/react-hooks';
+import { ContextualMenuItemType, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { mergeStyles } from 'office-ui-fabric-react'
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+// import './ContextualMenuExample.scss';
 
-// Initialize icons in case this example uses them
-initializeIcons();
+const spacerTR = mergeStyles({
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  });
 
-interface IContextualMenuBasicExampleState {
-  showContextualMenu?: boolean;
+class ContextualMenuDefaultExample extends React.Component {
+  public render(): JSX.Element {
+    return (
+      <div className={spacerTR}>
+        <DefaultButton
+          text="Add to Collection"
+          menuProps={{
+            shouldFocusOnMount: true,
+            items: [ //will change to make collections
+              {
+                key: 'newItem',
+                text: 'New',
+                onClick: () => console.log('New clicked')
+              },
+              {
+                key: 'divider_1',
+                itemType: ContextualMenuItemType.Divider
+              },
+              {
+                key: 'rename',
+                text: 'Rename',
+                onClick: () => console.log('Rename clicked')
+              },
+              {
+                key: 'edit',
+                text: 'Edit',
+                onClick: () => console.log('Edit clicked')
+              },
+              {
+                key: 'properties',
+                text: 'Properties',
+                onClick: () => console.log('Properties clicked')
+              },
+              {
+                key: 'linkNoTarget',
+                text: 'Link same window',
+                href: 'http://bing.com'
+              },
+              {
+                key: 'linkWithTarget',
+                text: 'Link new window',
+                href: 'http://bing.com',
+                target: '_blank'
+              },
+              {
+                key: 'linkWithOnClick',
+                name: 'Link click',
+                href: 'http://bing.com',
+                onClick: (ev?: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement> | undefined, item?: IContextualMenuItem | undefined) => {
+                  alert('Link clicked');
+                  if(ev !== undefined){
+                    ev.preventDefault();
+                  }
+                },
+                target: '_blank'
+              }
+            ]
+          }}
+        />
+      </div>
+    );
+  }
 }
 
-const ContextualMenuBasicExample: React.FunctionComponent = () => {
-  const linkRef = React.useRef(null);
-  const [showContextualMenu, setShowContextualMenu] = React.useState(false);
-  const onShowContextualMenu = useConstCallback(() => setShowContextualMenu(true));
-  const onHideContextualMenu = useConstCallback(() => setShowContextualMenu(false));
-
-  return (
-    <div>
-      This example directly uses ContextualMenu to show how it can be attached to arbitrary elements. The remaining examples use
-      ContextualMenu through Fabric Button components.
-      <p>
-        <b>
-          <a ref={linkRef} onClick={onShowContextualMenu}>
-            Click for ContextualMenu
-          </a>
-        </b>
-      </p>
-      <ContextualMenu
-        items={menuItems}
-        hidden={!showContextualMenu}
-        // target={linkRef}
-        onItemClick={onHideContextualMenu}
-        onDismiss={onHideContextualMenu}
-      />
-    </div>
-  );
-};
-
-const menuItems: IContextualMenuItem[] = [
-  {
-    key: 'newItem',
-    text: 'New',
-    onClick: () => console.log('New clicked')
-  },
-  {
-    key: 'divider_1',
-    itemType: ContextualMenuItemType.Divider
-  },
-  {
-    key: 'rename',
-    text: 'Rename',
-    onClick: () => console.log('Rename clicked')
-  },
-  {
-    key: 'edit',
-    text: 'Edit',
-    onClick: () => console.log('Edit clicked')
-  },
-  {
-    key: 'properties',
-    text: 'Properties',
-    onClick: () => console.log('Properties clicked')
-  },
-  {
-    key: 'linkNoTarget',
-    text: 'Link same window',
-    href: 'http://bing.com'
-  },
-  {
-    key: 'linkWithTarget',
-    text: 'Link new window',
-    href: 'http://bing.com',
-    target: '_blank'
-  },
-  {
-    key: 'linkWithOnClick',
-    name: 'Link click',
-    href: 'http://bing.com',
-    onClick: (ev?: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement> | undefined, item?: IContextualMenuItem | undefined) => {
-      alert('Link clicked'); //(ev: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>)
-      if (ev !== undefined){
-        ev.preventDefault();
-      }
-    },
-    target: '_blank'
-  },
-  {
-    key: 'disabled',
-    text: 'Disabled item',
-    disabled: true,
-    onClick: () => console.error('Disabled item should not be clickable.')
-  }
-];
-
-export default ContextualMenuBasicExample
-// const ContextualMenuBasicExampleWrapper = () => <Fabric><ContextualMenuBasicExample /></Fabric>;
-// ReactDOM.render(<ContextualMenuBasicExampleWrapper />, document.getElementById('content'))
+export default ContextualMenuDefaultExample

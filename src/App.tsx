@@ -5,6 +5,7 @@ import Artwork from './Artwork';
 import {Options} from './Options';
 import GalleryItem from './GalleryItem';
 import ListGridExample from './Gallery';
+import ContextualMenuDefaultExample from './CollectionAdder';
 
 const btmMargin = mergeStyles({
     marginBottom: 50
@@ -27,6 +28,7 @@ export const App : React.FunctionComponent = () => {
             <Stack horizontal>
                 <Stack grow={1}>
                     <Artwork item={current} />
+                    <ContextualMenuDefaultExample/>
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>
