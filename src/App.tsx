@@ -1,11 +1,12 @@
 import React from 'react';
 import {Stack, Text} from 'office-ui-fabric-react';
+import {Header} from './Header';
 
 export const App : React.FunctionComponent = () => {
     return (
         <Stack>
             <Stack>
-                {/*header*/}
+                <Header />
             </Stack>
             <Stack horizontal>
                 <Stack grow={1}>
