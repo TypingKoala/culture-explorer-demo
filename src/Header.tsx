@@ -1,5 +1,5 @@
 import React from 'react';
-import {CommandBar, ICommandBarProps, ICommandBarItemProps} from 'office-ui-fabric-react/lib/CommandBar';
+import {CommandBar, ICommandBarItemProps} from 'office-ui-fabric-react/lib/CommandBar';
 import {initializeIcons} from 'office-ui-fabric-react/lib/Icons';
 
 // initialize icons
