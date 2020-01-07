@@ -30,7 +30,7 @@ const defaultGalleryItem = new GalleryItem(
 const defaultSelectedGalleryItem = new GalleryItem(
     "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
     "The Peacemakers",
-    "Rembrandt van Rijn"
+    "George Peter Alexander Healy"
 )
 
 export class App extends React.Component<IProps, IState> {
