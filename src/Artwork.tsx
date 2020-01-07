@@ -7,10 +7,6 @@ const spacerB = mergeStyles({
     paddingBottom: 10,
   });
 
-const artworkImageClass = mergeStyles({
-  width: "inherit"
-});
-
 type ArtworkProps = {
     item: GalleryItem
 }
@@ -19,8 +15,9 @@ class Artwork extends React.Component < ArtworkProps > {
         return (
             <Stack horizontalAlign="center" verticalAlign="start" className={spacerB}>
                 <Image src={this.props.item.url} imageFit={ImageFit.centerContain} width={400} height={200} className={spacerB}/>
-                <Text variant="large">{this.props.item.title}</Text>
-                <Text variant="small">{this.props.item.desc}</Text>
+                <Stack>
+                  <Text variant="large">{this.props.item.title}</Text>
+                </Stack>
             </Stack>
         )
     }
