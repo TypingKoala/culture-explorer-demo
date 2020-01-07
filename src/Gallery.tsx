@@ -23,7 +23,7 @@ const { palette, fonts } = theme;
 
 const containerSize = mergeStyles({
     position: 'relative',
-    maxHeight: '80vh',
+    maxHeight: '50vh',
     paddingTop: '20px',
     paddingRight: '4px',
     paddingLeft: '4px',
@@ -88,7 +88,7 @@ const classNames: IListGridExampleClassObject = mergeStyleSets({
 });
 
 const ROWS_PER_PAGE = 3;
-const MAX_ROW_HEIGHT = 250;
+const MAX_ROW_HEIGHT = 150;
 
 class ListGrid extends React.Component<GalleryProps> {
   private _columnCount: number;
@@ -98,9 +98,9 @@ class ListGrid extends React.Component<GalleryProps> {
 
   constructor(props: GalleryProps) {
     super(props);
-    this._columnCount = 3;
-    this._columnWidth = 100;
-    this._rowHeight = 100;
+    this._columnCount = 0; //changing these does nothing
+    this._columnWidth = 0;
+    this._rowHeight = 0;
     this._items = props.items;
   }
 
