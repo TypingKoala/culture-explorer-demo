@@ -9,9 +9,11 @@ const btmMargin = mergeStyles({
 });
 
 export const App : React.FunctionComponent = () => {
+    const RIJKSMUSEUM_API_KEY = process.env.REACT_APP_RIJKSMUSEUM_API_KEY; // yes, this is bad
     return (
         <Stack>
             <Stack className={btmMargin}>
+                <Text>{RIJKSMUSEUM_API_KEY}</Text>
                 <Header />
             </Stack>
             <Stack horizontal>
