@@ -1,19 +1,23 @@
-# Running
-Create a `.env` file in the project root with the following text:
+# Installing and Running
+To run this, you'll need the latest version of Node.js installed.
+Open the project root and run `npm install`.
+
+To access the Rijksmuseum API, create a `.env` file in the project root with the following text:
 
 ```
 REACT_APP_RIJKSMUSEUM_API_KEY={yourapikey}
 ```
 
+where `{yourapikey}` is replaced by your personal API key. More details about the API are found [here](https://data.rijksmuseum.nl/object-metadata/api/).
+
 Then run `npm start`.
 
-Prereqs:
-install node.js
-then npm install after cloning
+# Design framework
+This project uses React Fabric UI.
 
 https://developer.microsoft.com/en-us/fabric#/controls/web/contextualmenu
 
-THINGS TO DO:
+# Todo
 Collections:
 contained in App as state- has updating functions but nowhere to display(shopping cart, change icon)
 user input needed when making new collection for the name
