@@ -11,6 +11,7 @@ import GalleryItem from './GalleryItem';
 
 type CardProps = {
   item: GalleryItem
+  setSelected: any
 }
 
 export class GalleryCard extends React.PureComponent<CardProps> {
@@ -19,12 +20,11 @@ export class GalleryCard extends React.PureComponent<CardProps> {
     const previewProps: IDocumentCardPreviewProps = {
       previewImages: [
         {
-          name: 'The Night Watch',
+          name: this.props.item.title,
           linkProps: {
-            href: 'http://bing.com',
-            target: '_blank'
+            href: '#'
           },
-          previewImageSrc: "https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=s0",
+          previewImageSrc: this.props.item.url,
           imageFit: ImageFit.cover,
           width: 200,
           height: 150
@@ -34,7 +34,7 @@ export class GalleryCard extends React.PureComponent<CardProps> {
 
     return (
       <DocumentCard
-        onClickHref="http://bing.com"
+        onClick={()=>this.props.setSelected(this.props.item)}
       >
         <DocumentCardPreview {...previewProps} />
         {/* <DocumentCardTitle

@@ -43,6 +43,7 @@ export class App extends React.Component<IProps, IState> {
             galleryItems: [defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem],
             collections: {'col1': [defaultGalleryItem], 'col2':[defaultGalleryItem, defaultGalleryItem]}
         }
+        this.setSelected = this.setSelected.bind(this);
     }
 
     setCurrent(newCurrent: GalleryItem): void {
@@ -51,6 +52,27 @@ export class App extends React.Component<IProps, IState> {
 
     setSelected(newSelected: GalleryItem): void {
         this.setState({"selected": newSelected});
+    }
+
+    setGalleryItems(newItems: GalleryItem[]): void {
+        this.setState({"galleryItems": newItems});
+    }
+
+    componentWillMount() {
+        const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
+        const url = `https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}&involvedMaker=Rembrandt+van+Rijn`;
+
+        fetch(url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((resJson: any) => {
+                let newItems: GalleryItem[] = [];
+                resJson.artObjects.forEach((obj:any) => {
+                    newItems.push(new GalleryItem(obj.webImage.url, obj.title, obj.longTitle));
+                });
+                this.setGalleryItems(newItems);
+            });
     }
 
     render() {
@@ -74,7 +96,7 @@ export class App extends React.Component<IProps, IState> {
                     <Separator vertical />
                     <Stack grow={1}>
                         <Artwork item={this.state.selected} />
-                        <ListGrid items={this.state.galleryItems} />
+                        <ListGrid items={this.state.galleryItems} setSelected={this.setSelected}/>
                     </Stack>
                 </Stack>
             </Stack>
