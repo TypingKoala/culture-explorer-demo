@@ -71,7 +71,7 @@ export class App extends React.Component<IProps, IState> {
                 resJson.artObjects.forEach((obj:any) => {
                     newItems.push(new GalleryItem(obj.webImage.url, obj.title, obj.longTitle));
                 });
-                this.setGalleryItems(newItems);
+                this.setGalleryItems(newItems.length > 9? newItems.slice(0, 9) : newItems );
             });
     }
 
