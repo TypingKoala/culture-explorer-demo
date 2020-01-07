@@ -7,8 +7,14 @@ import {
   IDocumentCardPreviewProps
 } from 'office-ui-fabric-react/lib/DocumentCard';
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
+import GalleryItem from './GalleryItem';
 
-export class GalleryCard extends React.PureComponent {
+type CardProps = {
+  item: GalleryItem
+}
+
+export class GalleryCard extends React.PureComponent<CardProps> {
+
   public render(): JSX.Element {
     const previewProps: IDocumentCardPreviewProps = {
       previewImages: [

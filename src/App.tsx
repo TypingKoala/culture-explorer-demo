@@ -31,7 +31,7 @@ export const App : React.FunctionComponent = () => {
 
     const [ selected, setSelected ] = React.useState(defaultSelectedGalleryItem);
 
-    const [ galleryItems, setGalleryItems ] = React.useState([defaultGalleryItem, defaultGalleryItem]);
+    const [ galleryItems, setGalleryItems ] = React.useState([defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem]);
 
     return (
         <Stack>
