@@ -1,14 +1,17 @@
 import React from 'react';
 import { Stack, FontWeights, Dropdown, IDropdownOption, IDropdownStyles} from 'office-ui-fabric-react';
+import { mergeStyles } from '@uifabric/merge-styles';
 
-const boldStyle = {
-  root: { fontWeight: FontWeights.semibold }
-}
+const dropdown = mergeStyles({
+    marginBottom : 10
+})
 
 interface IState {
 }
 
 interface IProps {
+  handleCultureChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void,
+  handleMediumChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void
 }
 
 const dropdownStyles: Partial<IDropdownStyles> = {
@@ -35,28 +38,31 @@ class Options extends React.Component<IProps, IState> {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {
+  handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption,) {
+    console.log(option)
   }
 
   render() {
     return(
       <Stack>
-        <Dropdown
-          placeholder="Select Culture"
-          label="Culture"
-          options={cultureOptions}
-          styles={dropdownStyles}
-          style={{"marginBottom" : "10px"}}
-          onChange={this.handleChange}
-        />
-        <Dropdown
-          placeholder="Select Medium"
-          label="Medium"
-          options={mediumOptions}
-          styles={dropdownStyles}
-          style={{"marginBottom" : "10px"}}
-          onChange={this.handleChange}
-        />
+        <Stack.Item align="center">
+          <Dropdown
+            placeholder="Select Culture"
+            label="Culture"
+            options={cultureOptions}
+            styles={dropdownStyles}
+            className={dropdown}
+            onChange={this.props.handleCultureChange}
+          />
+          <Dropdown
+            placeholder="Select Medium"
+            label="Medium"
+            options={mediumOptions}
+            styles={dropdownStyles}
+            className={dropdown}
+            onChange={this.props.handleMediumChange}
+          />
+        </Stack.Item>
       </Stack>
     );
     
