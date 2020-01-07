@@ -40,24 +40,26 @@ class Options extends React.Component<IProps, IState> {
 
   render() {
     return(
-      <Stack>
-        <Dropdown
-          placeholder="Select Culture"
-          label="Culture"
-          options={cultureOptions}
-          styles={dropdownStyles}
-          style={{"marginBottom" : "10px"}}
-          onChange={this.handleChange}
-        />
-        <Dropdown
-          placeholder="Select Medium"
-          label="Medium"
-          options={mediumOptions}
-          styles={dropdownStyles}
-          style={{"marginBottom" : "10px"}}
-          onChange={this.handleChange}
-        />
-      </Stack>
+        <Stack>
+          <Stack.Item align="center">
+            <Dropdown
+              placeholder="Select Culture"
+              label="Culture"
+              options={cultureOptions}
+              styles={dropdownStyles}
+              style={{"marginBottom" : "10px"}}
+              onChange={this.handleChange}
+            />
+            <Dropdown
+              placeholder="Select Medium"
+              label="Medium"
+              options={mediumOptions}
+              styles={dropdownStyles}
+              style={{"marginBottom" : "10px"}}
+              onChange={this.handleChange}
+            />
+          </Stack.Item>
+        </Stack>
     );
     
   }
