@@ -24,13 +24,13 @@ interface IState {
 const defaultGalleryItem = new GalleryItem(
     "https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=s0",
     "The Night Watch",
-    "Officers and other civic guardsmen of District II in Amsterdam, under the command of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch, known as ‘The Night Watch’"
+    "Rembrandt van Rijn"
 );
 
 const defaultSelectedGalleryItem = new GalleryItem(
     "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
     "The Peacemakers",
-    "A meeting between Union leadership."
+    "Rembrandt van Rijn"
 )
 
 export class App extends React.Component<IProps, IState> {
@@ -60,7 +60,7 @@ export class App extends React.Component<IProps, IState> {
 
     componentWillMount() {
         const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
-        const url = `https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}&involvedMaker=Rembrandt+van+Rijn`;
+        const url = `https://www.rijksmuseum.nl/api/en/collection?key=${api_key}&ps=9`;
 
         fetch(url)
             .then((res) => {
@@ -69,9 +69,9 @@ export class App extends React.Component<IProps, IState> {
             .then((resJson: any) => {
                 let newItems: GalleryItem[] = [];
                 resJson.artObjects.forEach((obj:any) => {
-                    newItems.push(new GalleryItem(obj.webImage.url, obj.title, obj.longTitle));
+                    newItems.push(new GalleryItem(obj.webImage.url, obj.title, obj.principalOrFirstMaker));
                 });
-                this.setGalleryItems(newItems.length > 9? newItems.slice(0, 9) : newItems );
+                this.setGalleryItems(newItems);
             });
     }
 
