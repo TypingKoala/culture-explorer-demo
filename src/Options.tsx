@@ -80,16 +80,16 @@ class Options extends React.Component<IProps, IState> {
       <Stack>
         <Stack.Item align="center">
           <Dropdown
-            placeholder={"Culture"}
-            label={"Select Culture"}
+            placeholder={"Select Culture"}
+            label={"Culture"}
             options={cultureOptions}
             styles={dropdownStyles}
             className={dropdown}
             onChange={this.props.handleCultureChange}
           />
           <Dropdown
-            placeholder={"Medium"}
-            label={"Select Medium"}
+            placeholder={"Select Medium"}
+            label={"Medium"}
             options={mediumOptions}
             styles={dropdownStyles}
             className={dropdown}
