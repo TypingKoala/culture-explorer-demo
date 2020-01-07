@@ -98,7 +98,7 @@ export class App extends React.Component<IProps, IState> {
                 <Stack horizontal>
                     <Stack grow={1}>
                         <Artwork item={this.state.current} />
-                        <CollectionAdder items={this.state.collections} adder={this.addtoCollection} addCollection={this.addCollection}/>
+                        <CollectionAdder items={this.state.collections} addtoCollection={this.addtoCollection} addCollection={this.addCollection}/>
                         <Buttons 
                             setCurrent={() => this.setCurrent(this.state.selected)} 
                             reset={() => {this.setCurrent(defaultGalleryItem); this.setSelected(defaultSelectedGalleryItem)}}/>
