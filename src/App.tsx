@@ -45,6 +45,7 @@ export class App extends React.Component<IProps, IState> {
         }
         this.setSelected = this.setSelected.bind(this);
         this.addtoCollection = this.addtoCollection.bind(this);
+        this.addCollection = this.addCollection.bind(this);
     }
 
     setCurrent(newCurrent: GalleryItem): void {
@@ -65,6 +66,11 @@ export class App extends React.Component<IProps, IState> {
         this.setState({'collections': newcollect});
     }
 
+    addCollection(collection:string): void{
+        this.state.collections[collection] = [this.state.current];
+        let newcollect = {...this.state.collections};
+        this.setState({'collections': newcollect});
+    }
 
     componentWillMount() {
         const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
@@ -92,7 +98,7 @@ export class App extends React.Component<IProps, IState> {
                 <Stack horizontal>
                     <Stack grow={1}>
                         <Artwork item={this.state.current} />
-                        <CollectionAdder items={this.state.collections} adder={this.addtoCollection}/>
+                        <CollectionAdder items={this.state.collections} adder={this.addtoCollection} addCollection={this.addCollection}/>
                         <Buttons 
                             setCurrent={() => this.setCurrent(this.state.selected)} 
                             reset={() => {this.setCurrent(defaultGalleryItem); this.setSelected(defaultSelectedGalleryItem)}}/>
