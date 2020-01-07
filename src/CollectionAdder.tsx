@@ -12,25 +12,22 @@ const spacerTR = mergeStyles({
   });
 
 type CollectionProps = {
-    items: any
-}
-type Entries = {
-    key: string,
-    text:string,
-    onClick: Function
+    items: any,
+    adder: any
 }
 
 class CollectionAdder extends React.Component < CollectionProps > {
   public render(): JSX.Element {
     if (this.props.items.length !== 0){
         let keys = Object.keys(this.props.items)
+        console.log(typeof(keys[0]))
         let menu = [{key: keys[0],
             text:keys[0],
-            onClick: ()=> console.log("added")}]
+            onClick: ()=>this.props.adder(keys[0])}]
         for (let i = 1; i<keys.length; i++){
             menu.push({key:keys[i],
             text:keys[i],
-            onClick:()=>console.log("added")})
+            onClick:()=> this.props.adder(keys[i])})
         }
         return (
         <div className={spacerTR}>

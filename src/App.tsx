@@ -44,6 +44,7 @@ export class App extends React.Component<IProps, IState> {
             collections: {'col1': [defaultGalleryItem], 'col2':[defaultGalleryItem, defaultGalleryItem]}
         }
         this.setSelected = this.setSelected.bind(this);
+        this.addtoCollection = this.addtoCollection.bind(this);
     }
 
     setCurrent(newCurrent: GalleryItem): void {
@@ -56,6 +57,15 @@ export class App extends React.Component<IProps, IState> {
 
     setGalleryItems(newItems: GalleryItem[]): void {
         this.setState({"galleryItems": newItems});
+    }
+
+    addtoCollection(collection: string): void{
+        // let newcollect = [...this.state.collections];
+        // newcollect[collection].push(this.state.current);
+        // this.setState({'collections': newcollect});
+        this.state.collections[collection].push(this.state.current);
+        let newcollect = {...this.state.collections};
+        this.setState({'collections': newcollect});
     }
 
     componentWillMount() {
@@ -84,7 +94,7 @@ export class App extends React.Component<IProps, IState> {
                 <Stack horizontal>
                     <Stack grow={1}>
                         <Artwork item={this.state.current} />
-                        <CollectionAdder items={this.state.collections}/>
+                        <CollectionAdder items={this.state.collections} adder={this.addtoCollection}/>
                         <Buttons 
                             setCurrent={() => this.setCurrent(this.state.selected)} 
                             reset={() => {this.setCurrent(defaultGalleryItem); this.setSelected(defaultSelectedGalleryItem)}}/>
