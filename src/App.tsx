@@ -26,7 +26,7 @@ export const App : React.FunctionComponent = () => {
             </Stack>
             <Stack horizontal>
                 <Stack grow={1}>
-                    <Artwork/>
+                    <Artwork item={current} />
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>
@@ -34,7 +34,7 @@ export const App : React.FunctionComponent = () => {
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>
-                    <Artwork/>
+                    <Artwork item={current} />
                     <ListGridExample/>
                 </Stack>
             </Stack>
