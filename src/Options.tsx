@@ -35,7 +35,7 @@ const mediumOptions: IDropdownOption[] = [
     { key: 'mediumArmor', text: 'Armor'}
 ];
 
-class Options extends React.Component<IProps, IState> {
+class Options extends React.Component<IProps> {
 
   // Debugging purposes, unnecessary
   private handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption): void {
