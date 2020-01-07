@@ -2,10 +2,6 @@ import React from 'react';
 import { Stack, FontWeights, Dropdown, IDropdownOption, IDropdownStyles} from 'office-ui-fabric-react';
 import { mergeStyles } from '@uifabric/merge-styles';
 
-const boldStyle = {
-  root: { fontWeight: FontWeights.semibold }
-}
-
 const dropdown = mergeStyles({
     marginBottom : 10
 })
@@ -14,7 +10,8 @@ interface IState {
 }
 
 interface IProps {
-
+  handleCultureChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void,
+  handleMediumChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void
 }
 
 const dropdownStyles: Partial<IDropdownStyles> = {
@@ -55,7 +52,7 @@ class Options extends React.Component<IProps, IState> {
             options={cultureOptions}
             styles={dropdownStyles}
             className={dropdown}
-            onChange={this.handleChange}
+            onChange={this.props.handleCultureChange}
           />
           <Dropdown
             placeholder="Select Medium"
@@ -63,7 +60,7 @@ class Options extends React.Component<IProps, IState> {
             options={mediumOptions}
             styles={dropdownStyles}
             className={dropdown}
-            onChange={this.handleChange}
+            onChange={this.props.handleMediumChange}
           />
         </Stack.Item>
       </Stack>
