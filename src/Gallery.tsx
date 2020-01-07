@@ -87,20 +87,13 @@ const classNames: IListGridExampleClassObject = mergeStyleSets({
   }
 });
 
-const ROWS_PER_PAGE = 3;
-const MAX_ROW_HEIGHT = 150;
-
 class ListGrid extends React.Component<GalleryProps> {
   private _columnCount: number;
-  private _columnWidth: number;
-  private _rowHeight: number;
   private _items: GalleryItem[];
 
   constructor(props: GalleryProps) {
     super(props);
-    this._columnCount = 0; //changing these does nothing
-    this._columnWidth = 0;
-    this._rowHeight = 0;
+    this._columnCount = 3;
     this._items = props.items;
   }
 
@@ -111,9 +104,6 @@ class ListGrid extends React.Component<GalleryProps> {
           <List
             className={classNames.listGridExample}
             items={this._items}
-            getItemCountForPage={this._getItemCountForPage}
-            getPageHeight={this._getPageHeight}
-            renderedWindowsAhead={4}
             onRenderCell={this._onRenderCell}
           />
         </FocusZone>
@@ -121,37 +111,19 @@ class ListGrid extends React.Component<GalleryProps> {
     );
   }
 
-  private _getItemCountForPage = (itemIndex?: number | undefined, visibleRect?: IRectangle | undefined): number => {
-    if (itemIndex === 0) {
-      if (visibleRect === undefined){
-        this._columnCount = 0;
-        this._columnWidth = 0;
-      }else{
-        this._columnCount = Math.ceil(visibleRect.width / MAX_ROW_HEIGHT);
-        this._columnWidth = Math.floor(visibleRect.width / this._columnCount);
-      }
-      this._rowHeight = this._columnWidth;
-    }
-
-    return this._columnCount * ROWS_PER_PAGE;
-  };
-
-  private _getPageHeight = (): number => {
-    return this._rowHeight * ROWS_PER_PAGE;
-  };
-
-  private _onRenderCell = (item: any, index: number | undefined): JSX.Element => {
+  private _onRenderCell = (item: any): JSX.Element => {
     return (
       <div
         className={classNames.listGridExampleTile}
         data-is-focusable={true}
         style={{
-          width: 100 / this._columnCount + '%'
+          width: 100 / this._columnCount + '%',
+          height: 150
         }}
       >
         <div className={classNames.listGridExampleSizer}>
           <div className={classNames.listGridExamplePadder}>
-            <GalleryCard />
+            <GalleryCard item={item} />
           </div>
         </div>
       </div>
