@@ -41,6 +41,7 @@ export class App extends React.Component<IProps, IState> {
             selected: defaultSelectedGalleryItem,
             galleryItems: [defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem]
         }
+        this.setSelected = this.setSelected.bind(this);
     }
 
     setCurrent(newCurrent: GalleryItem): void {
@@ -93,7 +94,7 @@ export class App extends React.Component<IProps, IState> {
                     <Separator vertical />
                     <Stack grow={1}>
                         <Artwork item={this.state.selected} />
-                        <ListGrid items={this.state.galleryItems} />
+                        <ListGrid items={this.state.galleryItems} setSelected={this.setSelected}/>
                     </Stack>
                 </Stack>
             </Stack>

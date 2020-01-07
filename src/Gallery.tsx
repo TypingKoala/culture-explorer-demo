@@ -7,6 +7,7 @@ import { GalleryCard } from './Gallery2';
 
 type GalleryProps = {
   items: GalleryItem[]
+  setSelected: any
 }
 
 interface IListGridExampleClassObject {
@@ -121,7 +122,7 @@ class ListGrid extends React.Component<GalleryProps> {
       >
         <div className={classNames.listGridExampleSizer}>
           <div className={classNames.listGridExamplePadder}>
-            <GalleryCard item={item} />
+            <GalleryCard item={item} setSelected={()=>this.props.setSelected(item)}/>
           </div>
         </div>
       </div>

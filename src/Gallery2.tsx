@@ -11,6 +11,7 @@ import GalleryItem from './GalleryItem';
 
 type CardProps = {
   item: GalleryItem
+  setSelected: any
 }
 
 export class GalleryCard extends React.PureComponent<CardProps> {
@@ -33,7 +34,7 @@ export class GalleryCard extends React.PureComponent<CardProps> {
 
     return (
       <DocumentCard
-        onClick={() => {return;}}
+        onClick={()=>this.props.setSelected(this.props.item)}
       >
         <DocumentCardPreview {...previewProps} />
         {/* <DocumentCardTitle
