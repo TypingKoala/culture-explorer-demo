@@ -13,7 +13,6 @@ export const App : React.FunctionComponent = () => {
     return (
         <Stack>
             <Stack className={btmMargin}>
-                <Text>{RIJKSMUSEUM_API_KEY}</Text>
                 <Header />
             </Stack>
             <Stack horizontal>
