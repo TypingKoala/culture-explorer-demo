@@ -41,7 +41,7 @@ export class App extends React.Component<IProps, IState> {
             current: defaultGalleryItem,
             selected: defaultSelectedGalleryItem,
             galleryItems: [defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem],
-            collections: {'col1': [defaultGalleryItem], 'col2':[defaultGalleryItem, defaultGalleryItem]}
+            collections: {'Collection 1': [defaultGalleryItem], 'Collection 2':[defaultGalleryItem, defaultGalleryItem]}
         }
         this.setSelected = this.setSelected.bind(this);
         this.addtoCollection = this.addtoCollection.bind(this);
@@ -60,13 +60,11 @@ export class App extends React.Component<IProps, IState> {
     }
 
     addtoCollection(collection: string): void{
-        // let newcollect = [...this.state.collections];
-        // newcollect[collection].push(this.state.current);
-        // this.setState({'collections': newcollect});
         this.state.collections[collection].push(this.state.current);
         let newcollect = {...this.state.collections};
         this.setState({'collections': newcollect});
     }
+
 
     componentWillMount() {
         const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
