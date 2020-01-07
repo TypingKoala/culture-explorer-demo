@@ -13,23 +13,25 @@ const spacerTR = mergeStyles({
 
 type CollectionProps = {
     items: any,
-    adder: any
+    adder: any,
+    addCollection: any
 }
 
 class CollectionAdder extends React.Component < CollectionProps > {
   public render(): JSX.Element {
+    let menu = [{key: "NEWcollectionButton",
+        text: "Make a new Collection",
+        onClick: ()=>this.props.addCollection("Collection3")}]
     if (this.props.items.length !== 0){
         let keys = Object.keys(this.props.items)
         console.log(typeof(keys[0]))
-        let menu = [{key: keys[0],
-            text:keys[0],
-            onClick: ()=>this.props.adder(keys[0])}]
-        for (let i = 1; i<keys.length; i++){
+        for (let i = 0; i<keys.length; i++){
             menu.push({key:keys[i],
             text:keys[i],
             onClick:()=> this.props.adder(keys[i])})
         }
-        return (
+    }
+    return (
         <div className={spacerTR}>
             <DefaultButton
             text="Add to Collection"
@@ -40,11 +42,6 @@ class CollectionAdder extends React.Component < CollectionProps > {
             />
         </div>
         );
-        }
-        return (
-            <div>
-            </div>
-            );
     }
 }
 
