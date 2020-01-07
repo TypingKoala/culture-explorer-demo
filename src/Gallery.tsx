@@ -89,12 +89,10 @@ const classNames: IListGridExampleClassObject = mergeStyleSets({
 
 class ListGrid extends React.Component<GalleryProps> {
   private _columnCount: number;
-  private _items: GalleryItem[];
 
   constructor(props: GalleryProps) {
     super(props);
     this._columnCount = 3;
-    this._items = props.items;
   }
 
   public render(): JSX.Element {
@@ -103,7 +101,7 @@ class ListGrid extends React.Component<GalleryProps> {
         <FocusZone data-is-scrollable='true'>
           <List
             className={classNames.listGridExample}
-            items={this._items}
+            items={this.props.items}
             onRenderCell={this._onRenderCell}
           />
         </FocusZone>

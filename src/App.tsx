@@ -51,6 +51,27 @@ export class App extends React.Component<IProps, IState> {
         this.setState({"selected": newSelected});
     }
 
+    setGalleryItems(newItems: GalleryItem[]): void {
+        this.setState({"galleryItems": newItems});
+    }
+
+    componentWillMount() {
+        const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
+        const url = `https://www.rijksmuseum.nl/api/nl/collection?key=${api_key}&involvedMaker=Rembrandt+van+Rijn`;
+
+        fetch(url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((resJson: any) => {
+                let newItems: GalleryItem[] = [];
+                resJson.artObjects.forEach((obj:any) => {
+                    newItems.push(new GalleryItem(obj.webImage.url, obj.title, obj.longTitle));
+                });
+                this.setGalleryItems(newItems);
+            });
+    }
+
     render() {
         return (
             <Stack>
