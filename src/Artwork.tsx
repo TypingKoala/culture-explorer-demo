@@ -17,6 +17,7 @@ class Artwork extends React.Component < ArtworkProps > {
                 <Image src={this.props.item.url} imageFit={ImageFit.centerContain} width={400} height={200} className={spacerB}/>
                 <Stack>
                   <Text variant="large">{this.props.item.title}</Text>
+                  <Text variant="small">{this.props.item.principal}</Text>
                 </Stack>
             </Stack>
         )
