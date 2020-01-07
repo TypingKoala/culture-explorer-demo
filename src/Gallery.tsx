@@ -1,11 +1,12 @@
 import React from 'react';
 import { FocusZone, List, IRectangle, ITheme, getTheme, mergeStyleSets, mergeStyles } from 'office-ui-fabric-react';
-import { createListItems, IExampleItem } from'office-ui-fabric-react/lib/utilities/exampleData'
+import GalleryItem from './GalleryItem';
+import { GalleryCard } from './Gallery2';
 
 //from site- scrollable list
 
-interface IListGridExampleProps {
-  items?: IExampleItem[];
+type GalleryProps = {
+  items: GalleryItem[]
 }
 
 interface IListGridExampleClassObject {
@@ -89,18 +90,18 @@ const classNames: IListGridExampleClassObject = mergeStyleSets({
 const ROWS_PER_PAGE = 3;
 const MAX_ROW_HEIGHT = 250;
 
-class ListGridExample extends React.Component<IListGridExampleProps> {
+class ListGrid extends React.Component<GalleryProps> {
   private _columnCount: number;
   private _columnWidth: number;
   private _rowHeight: number;
-  private _items: IExampleItem[];
+  private _items: GalleryItem[];
 
-  constructor(props: IListGridExampleProps) {
+  constructor(props: GalleryProps) {
     super(props);
     this._columnCount = 3;
     this._columnWidth = 100;
     this._rowHeight = 100;
-    this._items = props.items || createListItems(5000);
+    this._items = props.items;
   }
 
   public render(): JSX.Element {
@@ -150,8 +151,7 @@ class ListGridExample extends React.Component<IListGridExampleProps> {
       >
         <div className={classNames.listGridExampleSizer}>
           <div className={classNames.listGridExamplePadder}>
-            <img src={item.thumbnail} className={classNames.listGridExampleImage} />
-            <span className={classNames.listGridExampleLabel}>{`item ${index}`}</span>
+            <GalleryCard />
           </div>
         </div>
       </div>
@@ -160,4 +160,4 @@ class ListGridExample extends React.Component<IListGridExampleProps> {
 }
 
 // const ListGridExampleWrapper = () => <Fabric><ListGridExample /></Fabric>;
-export default ListGridExample
+export default ListGrid;
