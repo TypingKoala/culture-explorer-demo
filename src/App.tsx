@@ -12,49 +12,71 @@ const btmMargin = mergeStyles({
     marginBottom: 50
 });
 
-export const App : React.FunctionComponent = () => {
-    const RIJKSMUSEUM_API_KEY = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
+interface IProps {};
 
-    const defaultGalleryItem = new GalleryItem(
-        "https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=s0",
-        "The Night Watch",
-        "Officers and other civic guardsmen of District II in Amsterdam, under the command of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch, known as ‘The Night Watch’"
-    );
+interface IState {
+    current: GalleryItem,
+    selected: GalleryItem,
+    galleryItems: GalleryItem[]
+}
 
-    const defaultSelectedGalleryItem = new GalleryItem(
-        "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
-        "The Peacemakers",
-        "A meeting between Union leadership."
-    )
+const defaultGalleryItem = new GalleryItem(
+    "https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=s0",
+    "The Night Watch",
+    "Officers and other civic guardsmen of District II in Amsterdam, under the command of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch, known as ‘The Night Watch’"
+);
 
-    const [ current, setCurrent ] = React.useState(defaultGalleryItem);
+const defaultSelectedGalleryItem = new GalleryItem(
+    "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
+    "The Peacemakers",
+    "A meeting between Union leadership."
+)
 
-    const [ selected, setSelected ] = React.useState(defaultSelectedGalleryItem);
+export class App extends React.Component<IProps, IState> {
+    
+    constructor(props:any) {
+        super(props);
+        this.state = {
+            current: defaultGalleryItem,
+            selected: defaultSelectedGalleryItem,
+            galleryItems: [defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem]
+        }
+    }
 
-    const [ galleryItems, setGalleryItems ] = React.useState([defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem, defaultGalleryItem]);
+    setCurrent(newCurrent: GalleryItem): void {
+        this.setState({"current": newCurrent});
+    }
 
-    return (
-        <Stack>
-            <Stack className={btmMargin}>
-                <Header />
+    setSelected(newSelected: GalleryItem): void {
+        this.setState({"selected": newSelected});
+    }
+
+    render() {
+        return (
+            <Stack>
+                <Stack className={btmMargin}>
+                    <Header />
+                </Stack>
+                <Stack horizontal>
+                    <Stack grow={1}>
+                        <Artwork item={this.state.current} />
+                        <ContextualMenuDefaultExample/>
+                        <Buttons 
+                            setCurrent={() => this.setCurrent(this.state.selected)} 
+                            reset={() => {this.setCurrent(defaultGalleryItem); this.setSelected(defaultSelectedGalleryItem)}}/>
+                    </Stack>
+                    <Separator vertical />
+                    <Stack grow={1}>
+                        <Options/>
+                    </Stack>
+                    <Separator vertical />
+                    <Stack grow={1}>
+                        <Artwork item={this.state.selected} />
+                        <ListGrid items={this.state.galleryItems} />
+                    </Stack>
+                </Stack>
             </Stack>
-            <Stack horizontal>
-                <Stack grow={1}>
-                    <Artwork item={current} />
-                    <ContextualMenuDefaultExample/>
-                    <Buttons setCurrent={() => setCurrent(selected)} reset={() => {setCurrent(defaultGalleryItem); setSelected(defaultSelectedGalleryItem)}}/>
-                </Stack>
-                <Separator vertical />
-                <Stack grow={1}>
-                    <Options/>
-                </Stack>
-                <Separator vertical />
-                <Stack grow={1}>
-                    <Artwork item={selected} />
-                    <ListGrid items={galleryItems} />
-                </Stack>
-            </Stack>
-        </Stack>
-
-    );
-};
+    
+        );
+    }
+}
