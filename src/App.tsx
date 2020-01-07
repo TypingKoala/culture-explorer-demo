@@ -6,6 +6,7 @@ import Options from './Options';
 import GalleryItem from './GalleryItem';
 import ListGrid from './Gallery';
 import ContextualMenuDefaultExample from './CollectionAdder';
+import {Buttons} from './Buttons';
 
 const btmMargin = mergeStyles({
     marginBottom: 50
@@ -20,9 +21,15 @@ export const App : React.FunctionComponent = () => {
         "Officers and other civic guardsmen of District II in Amsterdam, under the command of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch, known as ‘The Night Watch’"
     );
 
+    const defaultSelectedGalleryItem = new GalleryItem(
+        "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
+        "The Peacemakers",
+        "A meeting between Union leadership."
+    )
+
     const [ current, setCurrent ] = React.useState(defaultGalleryItem);
 
-    const [ selected, setSelected ] = React.useState(defaultGalleryItem);
+    const [ selected, setSelected ] = React.useState(defaultSelectedGalleryItem);
 
     const [ galleryItems, setGalleryItems ] = React.useState([defaultGalleryItem, defaultGalleryItem]);
 
@@ -35,6 +42,7 @@ export const App : React.FunctionComponent = () => {
                 <Stack grow={1}>
                     <Artwork item={current} />
                     <ContextualMenuDefaultExample/>
+                    <Buttons setCurrent={() => setCurrent(selected)}/>
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>
