@@ -2,6 +2,7 @@ import React from 'react';
 import {Stack, Text} from 'office-ui-fabric-react';
 import {Header} from './Header';
 import Artwork from './Artwork';
+import {Options} from './Options';
 
 export const App : React.FunctionComponent = () => {
     return (
@@ -15,8 +16,7 @@ export const App : React.FunctionComponent = () => {
                     <Artwork/>
                 </Stack>
                 <Stack grow={1}>
-                    {/* <Text>Column B</Text> */}
-                    <Artwork/>
+                    <Options/>
                 </Stack>
                 <Stack grow={1}>
                     {/* <Text>Column C</Text> */}
