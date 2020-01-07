@@ -5,7 +5,7 @@ import Artwork from './Artwork';
 import Options from './Options';
 import GalleryItem from './GalleryItem';
 import ListGrid from './Gallery';
-import ContextualMenuDefaultExample from './CollectionAdder';
+import CollectionAdder from './CollectionAdder';
 
 const btmMargin = mergeStyles({
     marginBottom: 50
@@ -26,6 +26,8 @@ export const App : React.FunctionComponent = () => {
 
     const [ galleryItems, setGalleryItems ] = React.useState([defaultGalleryItem, defaultGalleryItem]);
 
+    const [ collections, setcollections ] = React.useState({'Collection1':[defaultGalleryItem]});
+
     return (
         <Stack>
             <Stack className={btmMargin}>
@@ -34,7 +36,7 @@ export const App : React.FunctionComponent = () => {
             <Stack horizontal>
                 <Stack grow={1}>
                     <Artwork item={current} />
-                    <ContextualMenuDefaultExample/>
+                    <CollectionAdder items={collections}/>
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>

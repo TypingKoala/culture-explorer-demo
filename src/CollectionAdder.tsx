@@ -2,6 +2,8 @@ import React from'react';
 import { ContextualMenuItemType, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { mergeStyles } from 'office-ui-fabric-react'
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import GalleryItem from './GalleryItem';
+
 // import './ContextualMenuExample.scss';
 
 const spacerTR = mergeStyles({
@@ -9,8 +11,18 @@ const spacerTR = mergeStyles({
     marginRight: 'auto'
   });
 
-class ContextualMenuDefaultExample extends React.Component {
+type CollectionProps = {
+    items: Object
+}
+type Entries = {
+    key: string,
+    text:string,
+    onClick: Function
+}
+
+class CollectionAdder extends React.Component < CollectionProps > {
   public render(): JSX.Element {
+    console.log("PROPS", this.props.items)
     return (
       <div className={spacerTR}>
         <DefaultButton
@@ -73,4 +85,4 @@ class ContextualMenuDefaultExample extends React.Component {
   }
 }
 
-export default ContextualMenuDefaultExample
+export default CollectionAdder
