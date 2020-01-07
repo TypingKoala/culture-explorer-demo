@@ -1,18 +1,21 @@
 import React from 'react';
-import {Stack, Text, Separator} from 'office-ui-fabric-react';
+import {Stack, Text, Separator, mergeStyles} from 'office-ui-fabric-react';
 import {Header} from './Header';
 import Artwork from './Artwork';
 import {Options} from './Options';
 
+const btmMargin = mergeStyles({
+    marginBottom: 50
+});
+
 export const App : React.FunctionComponent = () => {
     return (
         <Stack>
-            <Stack>
+            <Stack className={btmMargin}>
                 <Header />
             </Stack>
             <Stack horizontal>
                 <Stack grow={1}>
-                    {/* <Text>Column A</Text> */}
                     <Artwork/>
                 </Stack>
                 <Separator vertical />
@@ -21,7 +24,6 @@ export const App : React.FunctionComponent = () => {
                 </Stack>
                 <Separator vertical />
                 <Stack grow={1}>
-                    {/* <Text>Column C</Text> */}
                     <Artwork/>
                 </Stack>
             </Stack>
