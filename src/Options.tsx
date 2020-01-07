@@ -6,11 +6,11 @@ const dropdown = mergeStyles({
     marginBottom : 10
 });
 
-interface IState {
-}
-
+// Expected props
 interface IProps {
+  // Potentially pass in a object of the selector options from parent (culture, medium, etc)?
   options? : Object,
+  // Functions for updating state in parent when changing filters
   handleCultureChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void,
   handleMediumChange? : (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void
 }
@@ -19,6 +19,7 @@ const dropdownStyles: Partial<IDropdownStyles> = {
   dropdown: { width:300 }
 }
 
+// Options for filtering the art culture
 const cultureOptions: IDropdownOption[] = [
     { key: 'cultureChinese', text: 'Chinese' },
     { key: 'cultureAmerican', text: 'American' },
@@ -26,6 +27,7 @@ const cultureOptions: IDropdownOption[] = [
     { key: 'cultureKorean', text: 'Korean' }
 ];
 
+// Options for filtering the art medium
 const mediumOptions: IDropdownOption[] = [
     { key: 'mediumPainting', text: 'Painting'},
     { key: 'mediumSculpture', text: 'Sculpture'},
@@ -33,16 +35,19 @@ const mediumOptions: IDropdownOption[] = [
     { key: 'mediumArmor', text: 'Armor'}
 ];
 
-class Options extends React.Component<IProps, IState> {
+class Options extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
     // this.handleChange = this.handleChange.bind(this);
   }
 
+  // Debugging purposes, unnecessary
   private handleChange(event : React.FormEvent<HTMLDivElement>, option?: IDropdownOption): void {
     console.log(option)
   }
 
+  // TODO: Planned on building up a set of dropdowns inputs in case we need
+  // to easily add more options besides culture and medium
   private createDropdowns(): JSX.Element[] {
     let dropdowns: JSX.Element[] = [];
 

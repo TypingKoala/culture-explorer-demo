@@ -14,6 +14,7 @@ type ButtonProps = {
     reset: any
 }
 
+// Component for a group of buttons (currently buttons for switching the current image and for restarting)
 export const Buttons : React.FunctionComponent<ButtonProps> = (props) => {
     return (
         <Stack>
