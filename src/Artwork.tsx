@@ -7,7 +7,6 @@ class Artwork extends React.Component{
             <Stack
             horizontalAlign="center"
             verticalAlign="start"
-            verticalFill
             >
                 <Image
                     src='//q42imageserver.appspot.com/thumbnail/aa08df9c-0af9-4195-b31b-f578fbe0a4c9?cx=893&cy=702&cw=954&ch=954&w=200&h=200'
