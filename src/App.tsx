@@ -1,8 +1,9 @@
 import React from 'react';
-import {Stack, Text} from 'office-ui-fabric-react';
+import {Stack, Fabric} from 'office-ui-fabric-react';
 import {Header} from './Header';
 import Artwork from './Artwork';
 import {Options} from './Options';
+import ListGridExample from './Gallery';
 
 export const App : React.FunctionComponent = () => {
     return (
@@ -19,8 +20,8 @@ export const App : React.FunctionComponent = () => {
                     <Options/>
                 </Stack>
                 <Stack grow={1}>
-                    {/* <Text>Column C</Text> */}
                     <Artwork/>
+                    <ListGridExample/>
                 </Stack>
             </Stack>
         </Stack>

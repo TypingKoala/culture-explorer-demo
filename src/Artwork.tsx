@@ -6,7 +6,7 @@ class Artwork extends React.Component{
       return(
             <Stack
             horizontalAlign="center"
-            verticalAlign="center"
+            verticalAlign="start"
             verticalFill
             >
                 <Image
