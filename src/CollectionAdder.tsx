@@ -12,7 +12,7 @@ const spacerTR = mergeStyles({
   });
 
 type CollectionProps = {
-    items: Object
+    items: any
 }
 type Entries = {
     key: string,
@@ -22,67 +22,33 @@ type Entries = {
 
 class CollectionAdder extends React.Component < CollectionProps > {
   public render(): JSX.Element {
-    console.log("PROPS", this.props.items)
-    return (
-      <div className={spacerTR}>
-        <DefaultButton
-          text="Add to Collection"
-          menuProps={{
-            shouldFocusOnMount: true,
-            items: [ //will change to make collections
-              {
-                key: 'newItem',
-                text: 'New',
-                onClick: () => console.log('New clicked')
-              },
-              {
-                key: 'divider_1',
-                itemType: ContextualMenuItemType.Divider
-              },
-              {
-                key: 'rename',
-                text: 'Rename',
-                onClick: () => console.log('Rename clicked')
-              },
-              {
-                key: 'edit',
-                text: 'Edit',
-                onClick: () => console.log('Edit clicked')
-              },
-              {
-                key: 'properties',
-                text: 'Properties',
-                onClick: () => console.log('Properties clicked')
-              },
-              {
-                key: 'linkNoTarget',
-                text: 'Link same window',
-                href: 'http://bing.com'
-              },
-              {
-                key: 'linkWithTarget',
-                text: 'Link new window',
-                href: 'http://bing.com',
-                target: '_blank'
-              },
-              {
-                key: 'linkWithOnClick',
-                name: 'Link click',
-                href: 'http://bing.com',
-                onClick: (ev?: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement> | undefined, item?: IContextualMenuItem | undefined) => {
-                  alert('Link clicked');
-                  if(ev !== undefined){
-                    ev.preventDefault();
-                  }
-                },
-                target: '_blank'
-              }
-            ]
-          }}
-        />
-      </div>
-    );
-  }
+    if (this.props.items.length !== 0){
+        let keys = Object.keys(this.props.items)
+        let menu = [{key: keys[0],
+            text:keys[0],
+            onClick: ()=> console.log("added")}]
+        for (let i = 1; i<keys.length; i++){
+            menu.push({key:keys[i],
+            text:keys[i],
+            onClick:()=>console.log("added")})
+        }
+        return (
+        <div className={spacerTR}>
+            <DefaultButton
+            text="Add to Collection"
+            menuProps={{
+                shouldFocusOnMount: true,
+                items: menu
+            }}
+            />
+        </div>
+        );
+        }
+        return (
+            <div>
+            </div>
+            );
+    }
 }
 
 export default CollectionAdder
