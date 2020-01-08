@@ -21,12 +21,14 @@ interface IState {
     collections: any
 }
 
+// The default current image (left image)
 const defaultGalleryItem = new GalleryItem(
     "https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=s0",
     "The Night Watch",
     "Rembrandt van Rijn"
 );
 
+// The default selected image (right image)
 const defaultSelectedGalleryItem = new GalleryItem(
     "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_Peacemakers_1868.jpg",
     "The Peacemakers",
@@ -48,14 +50,17 @@ export class App extends React.Component<IProps, IState> {
         this.addCollection = this.addCollection.bind(this);
     }
 
+    // Update the current image (left image)
     setCurrent(newCurrent: GalleryItem): void {
         this.setState({"current": newCurrent});
     }
 
+    // Update the selected image (right image)
     setSelected(newSelected: GalleryItem): void {
         this.setState({"selected": newSelected});
     }
 
+    // Update the images of the gallery
     setGalleryItems(newItems: GalleryItem[]): void {
         this.setState({"galleryItems": newItems});
     }
@@ -72,6 +77,7 @@ export class App extends React.Component<IProps, IState> {
         this.setState({'collections': newcollect});
     }
 
+    // Currently fetches 9 images from rijksmuseum api and populates the gallery
     componentWillMount() {
         const api_key = process.env.REACT_APP_RIJKSMUSEUM_API_KEY;
         const url = `https://www.rijksmuseum.nl/api/en/collection?key=${api_key}&ps=9`;
